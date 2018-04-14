@@ -39,8 +39,8 @@ $(function(){
 		finalHTML += '<li class="list-group-item">'+ order.strength +'</li>';
 		finalHTML += '<button class="delete">x</button>';
 
-		finalHTML += '</ul';
-		finalHTML += '</div';
+		finalHTML += '</ul>';
+		finalHTML += '</div>';
 
 		return finalHTML;
 	}
@@ -66,7 +66,7 @@ $(function(){
 		var renderedHTML = renderCoffeeOrder(currentOrder);
 
 		// get the renderedHTML to show up in the DOM
-		$('.card').append(renderedHTML);
+		$('.cardContainer').append(renderedHTML);
 
 
 		// Save to local storage
