@@ -25,6 +25,11 @@ $(function(){
 
 		return finalHTML;
 	}
+	localData;
+
+	localStorage.setItem('myCoffeeOrdersArray', JSON.stringify(finalHTML));
+
+	localData = JSON.parse(localStorage.getItem('myCoffeeOrdersArray'));
 
 
 	//*** Listen for when people submit the form ***//
