@@ -7,7 +7,11 @@ $(function(){
 	var oldOrdersJSON = localStorage.getItem('coffeeOrders');  // the old orders
 	var oldOrders = JSON.parse(oldOrdersJSON); // retrieving the orders from local storage
 
-	orders = oldOrders;
+	if (oldOrders != null) {  // if local storage is blank
+		// edge case
+		orders = oldOrders; 
+	} 
+
 
 	// show the old orders to the screen
 	var oldOrdersHTML = '';
