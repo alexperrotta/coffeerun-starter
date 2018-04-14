@@ -1,6 +1,20 @@
 $(function(){
 
+	// page has loaded, need to pull the old orders from local storage
+
+
 	var orders = []; // this will hold all the orders
+	var oldOrdersJSON = localStorage.getItem('coffeeOrders');  // the old orders
+	var oldOrders = JSON.parse(oldOrdersJSON); // retrieving the orders from local storage
+
+	orders = oldOrders;
+
+	// show the old orders to the screen
+	var oldOrdersHTML = '';
+	orders.forEach(function(currentOrder){
+		oldOrdersHTML += renderCoffeeOrder(currentOrder);  // taking our empty string and adding html strings
+	});
+	$('.card').append(oldOrdersHTML);
 
 
 		//*** Delete an order ***//
@@ -8,6 +22,7 @@ $(function(){
 	  $('.card').on('click', '.delete', function(){  
         $(this).parent().remove();
       });  
+
 
 	function renderCoffeeOrder(order) {
 		var finalHTML = '<div class="card">';	
@@ -25,12 +40,7 @@ $(function(){
 
 		return finalHTML;
 	}
-	localData;
-
-	localStorage.setItem('myCoffeeOrdersArray', JSON.stringify(finalHTML));
-
-	localData = JSON.parse(localStorage.getItem('myCoffeeOrdersArray'));
-
+	
 
 	//*** Listen for when people submit the form ***//
 
@@ -53,6 +63,15 @@ $(function(){
 
 		// get the renderedHTML to show up in the DOM
 		$('.card').append(renderedHTML);
+
+
+		// Save to local storage
+
+		var ordersJSON = JSON.stringify(orders);
+		localStorage.setItem('coffeeOrders', ordersJSON);
+
+
+
 
 	});
 
