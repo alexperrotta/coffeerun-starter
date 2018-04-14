@@ -3,6 +3,12 @@ $(function(){
 	var orders = []; // this will hold all the orders
 
 
+		//*** Delete an order ***//
+
+	  $('.card').on('click', '.delete', function(){  
+        $(this).parent().remove();
+      });  
+
 	function renderCoffeeOrder(order) {
 		var finalHTML = '<div class="card">';	
 		finalHTML += '<ul class="list-group list-group-flush">';
@@ -19,7 +25,6 @@ $(function(){
 
 		return finalHTML;
 	}
-
 
 
 	//*** Listen for when people submit the form ***//
@@ -44,12 +49,20 @@ $(function(){
 		// get the renderedHTML to show up in the DOM
 		$('.card').append(renderedHTML);
 
-
-
 	});
 
-
-
-
+     
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
