@@ -1,18 +1,26 @@
 $(function(){
 
+	var orders = []; // this will hold all the orders
+
+
 	function renderCoffeeOrder(order) {
-		var finalHTML = '<div class="order">';
+		var finalHTML = '<div class="card">';	
+		finalHTML += '<ul class="list-group list-group-flush">';
 
-		finalHTML += '<span>'+ order.coffeeOrder +'</span>';
-		finalHTML += '<span>'+ order.email +'</span>';
-		finalHTML += '<span>'+ order.size +'</span>';
-		finalHTML += '<span>'+ order.flavorShot +'</span>';
-		finalHTML += '<span>'+ order.strength +'</span>';
+		finalHTML += '<li class="list-group-item">'+ order.coffeeOrder +'</li>';
+		finalHTML += '<li class="list-group-item">'+ order.email +'</li>';
+		finalHTML += '<li class="list-group-item">'+ order.size +'</li>';
+		finalHTML += '<li class="list-group-item">'+ order.flavorShot +'</li>';
+		finalHTML += '<li class="list-group-item">'+ order.strength +'</li>';
+		finalHTML += '<button class="delete">x</button>';
 
+		finalHTML += '</ul';
 		finalHTML += '</div';
 
 		return finalHTML;
 	}
+
+
 
 	//*** Listen for when people submit the form ***//
 
@@ -28,32 +36,20 @@ $(function(){
 			strength: $('#strengthLevel').val(),
 		};
 
+		orders.push(currentOrder);
+
 		// take the above above, render it to the screen
 		var renderedHTML = renderCoffeeOrder(currentOrder);
 
 		// get the renderedHTML to show up in the DOM
-		$('#orderList').append(renderedHTML);
+		$('.card').append(renderedHTML);
+
 
 
 	});
 
 
 
-//*** STATE ***//
-
-
-
-
-
-
-//*** ACTION ***//
-
-
-
-
-
-
-//*** KICK IT OFF ***//
 
 
 });
