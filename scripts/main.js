@@ -25,7 +25,8 @@ $(function(){
 
 	  $('.cardContainer').on('click', '.delete', function(){  
         
-	  	var idToDelete = $(this).parent().data("id");
+	  	var idToDelete = $(this).parent().parent().data("id");
+	  	console.log(idToDelete);
 
 	  	// remove orders from orders array
 	  	orders = orders.filter(function(currentOrder){
@@ -37,13 +38,13 @@ $(function(){
 	  	localStorage.setItem('coffeeOrders', ordersJSON);
 
 	  	// remove order from screen
-        $(this).parent().remove();
+        $(this).parent().parent().remove();
 
       });  
 
 
 	function renderCoffeeOrder(order) {
-		var finalHTML = '<div class="card data-id="'+ order.id +'">';	// embedded into the html
+		var finalHTML = '<div class="card" data-id="'+ order.id +'">';	// embedded into the html
 		finalHTML += '<ul class="list-group list-group-flush">';
 
 		finalHTML += '<li class="list-group-item">'+ order.coffeeOrder +'</li>';
