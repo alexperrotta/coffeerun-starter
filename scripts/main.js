@@ -18,18 +18,32 @@ $(function(){
 	orders.forEach(function(currentOrder){
 		oldOrdersHTML += renderCoffeeOrder(currentOrder);  // taking our empty string and adding html strings
 	});
-	$('.card').append(oldOrdersHTML);
+	$('.cardContainer').append(oldOrdersHTML);
 
 
 		//*** Delete an order ***//
 
-	  $('.card').on('click', '.delete', function(){  
+	  $('.cardContainer').on('click', '.delete', function(){  
+        
+	  	var idToDelete = $(this).parent().data("id");
+
+	  	// remove orders from orders array
+	  	orders = orders.filter(function(currentOrder){
+	  		return currentOrder.id != idToDelete;
+	  	});
+
+	  	// remove the order from local storage
+	  	var ordersJSON = JSON.stringify(orders);
+	  	localStorage.setItem('coffeeOrders', ordersJSON);
+
+	  	// remove order from screen
         $(this).parent().remove();
+
       });  
 
 
 	function renderCoffeeOrder(order) {
-		var finalHTML = '<div class="card">';	
+		var finalHTML = '<div class="card data-id="'+ order.id +'">';	// embedded into the html
 		finalHTML += '<ul class="list-group list-group-flush">';
 
 		finalHTML += '<li class="list-group-item">'+ order.coffeeOrder +'</li>';
@@ -53,6 +67,7 @@ $(function(){
 		e.preventDefault();
 
 		var currentOrder = {
+			id: new Date(),  // creates a time stamp
 			coffeeOrder: $('#coffeeOrder').val(),
 			email: $('#emailInput').val(),
 			size: $('input:checked').val(),
